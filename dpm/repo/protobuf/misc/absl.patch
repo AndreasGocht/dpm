@@ -1,0 +1,44 @@
+diff --git a/absl/container/internal/container_memory.h b/absl/container/internal/container_memory.h
+index 3262d4eb..1a36a41c 100644
+--- a/absl/container/internal/container_memory.h
++++ b/absl/container/internal/container_memory.h
+@@ -23,6 +23,7 @@
+ #include <tuple>
+ #include <type_traits>
+ #include <utility>
++#include <cstdint>
+ 
+ #include "absl/base/config.h"
+ #include "absl/memory/memory.h"
+diff --git a/absl/copts/GENERATED_AbseilCopts.cmake b/absl/copts/GENERATED_AbseilCopts.cmake
+index 430916f7..45aae7bd 100644
+--- a/absl/copts/GENERATED_AbseilCopts.cmake
++++ b/absl/copts/GENERATED_AbseilCopts.cmake
+@@ -217,7 +217,7 @@ list(APPEND ABSL_RANDOM_HWAES_ARM32_FLAGS
+ )
+ 
+ list(APPEND ABSL_RANDOM_HWAES_ARM64_FLAGS
+-    "-march=armv8-a+crypto"
++    ""
+ )
+ 
+ list(APPEND ABSL_RANDOM_HWAES_MSVC_X64_FLAGS
+diff --git a/absl/crc/internal/crc32_x86_arm_combined_simd.h b/absl/crc/internal/crc32_x86_arm_combined_simd.h
+index 59995ae3..5e70e9c2 100644
+--- a/absl/crc/internal/crc32_x86_arm_combined_simd.h
++++ b/absl/crc/internal/crc32_x86_arm_combined_simd.h
+@@ -39,14 +39,6 @@
+ #include <intrin.h>
+ #define ABSL_CRC_INTERNAL_HAVE_X86_SIMD
+ 
+-#elif defined(__aarch64__) && defined(__LITTLE_ENDIAN__) && \
+-    defined(__ARM_FEATURE_CRC32) && defined(ABSL_INTERNAL_HAVE_ARM_NEON) &&  \
+-    defined(__ARM_FEATURE_CRYPTO)
+-
+-#include <arm_acle.h>
+-#include <arm_neon.h>
+-#define ABSL_CRC_INTERNAL_HAVE_ARM_SIMD
+-
+ #endif
+ 
+ namespace absl {

@@ -1,0 +1,10 @@
+--- absl/container/internal/container_memory.h2	2025-06-25 20:30:59.947041760 +0200
++++ absl/container/internal/container_memory.h	2025-06-25 20:31:34.846372054 +0200
+@@ -23,6 +23,7 @@
+ #include <tuple>
+ #include <type_traits>
+ #include <utility>
++#include <cstdint>
+ 
+ #include "absl/base/config.h"
+ #include "absl/memory/memory.h"

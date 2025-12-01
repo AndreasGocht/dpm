@@ -3,6 +3,8 @@ from dpm.pkg_definition import Aspect, BasePackageRecipe
 
 from dpm.types import Needs
 
+import shutil
+
 
 class PackageRecipe(BasePackageRecipe):
     def __init__(self, store, name):
@@ -27,10 +29,18 @@ class PackageRecipe(BasePackageRecipe):
 
     def create(self):
         self.tmpdir_execute(
-            ["./Configure", "no-shared", "--libdir=lib", f"--prefix={self.prefix}"],
+            [
+                "./Configure",
+                "no-shared",
+                "--openssldir=etc/ssl",
+                "--libdir=lib",
+                f"--prefix={self.prefix}",
+            ],
             "openssl-3.6.0-beta1",
         )
         self.make(path="openssl-3.6.0-beta1")
 
     def install(self):
         self.make("install", path="openssl-3.6.0-beta1")
+        shutil.rmtree(self.prefix / "etc" / "ssl")
+        (self.prefix / "etc" / "ssl").symlink_to("/etc/ssl")

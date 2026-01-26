@@ -1,5 +1,3 @@
-import os
-
 from dpm.downloader import WebResource
 from dpm.pkg_definition import Aspect, BasePackageRecipe
 from dpm.types import Needs, Provides
